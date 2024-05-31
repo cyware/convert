@@ -96,7 +96,7 @@ mod tests {
     #[test]
     fn hash_md5() {
         let hasher = Md5Hash::new();
-        let res = hasher.execute(b"cyware").unwrap();
+        let res = hasher.execute(b"caido").unwrap();
         let encode = HexEncode::new(crate::HexFormat::Lower, None, None);
         let hex_result = encode.execute(&res).unwrap();
         assert_eq!(hex_result, b"7542bf4fd4500c58ac741ae2e05a1521")

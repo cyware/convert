@@ -73,9 +73,9 @@ mod tests {
     fn url_decode() {
         let encoder = UrlDecode::new();
         let actual = encoder
-            .execute("cyware @%C3%A9%C3%A9%F0%9F%A5%96".as_bytes())
+            .execute("caido @%C3%A9%C3%A9%F0%9F%A5%96".as_bytes())
             .unwrap();
-        let expected = "cyware @éé🥖".as_bytes().to_vec();
+        let expected = "caido @éé🥖".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
@@ -90,15 +90,15 @@ mod tests {
     #[test]
     fn url_encode_non_ascii() {
         let encoder = UrlEncode::new(true, None);
-        let actual = encoder.execute("cyware @éé".as_bytes()).unwrap();
-        let expected = "cyware @%C3%A9%C3%A9".as_bytes().to_vec();
+        let actual = encoder.execute("caido @éé".as_bytes()).unwrap();
+        let expected = "caido @%C3%A9%C3%A9".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
     #[test]
     fn url_encode_non_ascii_and_charset() {
         let encoder = UrlEncode::new(true, Some("c".to_string()));
-        let actual = encoder.execute("cyware @éé🥖".as_bytes()).unwrap();
+        let actual = encoder.execute("caido @éé🥖".as_bytes()).unwrap();
         let expected = "%63aido @%C3%A9%C3%A9%F0%9F%A5%96".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }

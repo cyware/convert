@@ -4,7 +4,7 @@ version = "1.0.6"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/cyware/convert"
-authors = ["KhulnaSoft DevSec <security@khulnasoft.com>", "Cyware <info@khulnasoft.com>"]
+authors = ["Christopher Guay <chris@cyware.io>", "Cyware <info@cyware.io>"]
 readme = "README.md"
 description = """
 WASM bindings for cyware/convert crate

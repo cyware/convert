@@ -74,14 +74,14 @@ mod tests {
     fn base64_decode() {
         let encoder = Base64Decode::new(Base64Format::Standard, true);
         let actual = encoder.execute("Y2FpZG8=".as_bytes()).unwrap();
-        let expected = "cyware".as_bytes().to_vec();
+        let expected = "caido".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
     #[test]
     fn base64_encode() {
         let encoder = Base64Encode::new(Base64Format::Standard, true);
-        let actual = encoder.execute("cyware".as_bytes()).unwrap();
+        let actual = encoder.execute("caido".as_bytes()).unwrap();
         let expected = "Y2FpZG8=".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }

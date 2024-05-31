@@ -31,9 +31,7 @@ test:
   just wasm-tests
 
 coverage:
-  cargo test -p cyware-convert
-  just build-wasm-dev
-  just wasm-tests
+  cargo llvm-cov -p cyware-convert --html --open --ignore-filename-regex errors
 
 lcov:
   cargo llvm-cov -p cyware-convert --ignore-filename-regex errors --lcov --output-path lcov.info
