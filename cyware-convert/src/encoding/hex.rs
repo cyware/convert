@@ -96,7 +96,7 @@ mod tests {
     fn hex_decode_no_prefix_no_delimiter() {
         let encoder = HexDecode::new(None, None);
         let actual = encoder.execute("636169646f".as_bytes()).unwrap();
-        let expected = "cyware".as_bytes().to_vec();
+        let expected = "caido".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
@@ -106,7 +106,7 @@ mod tests {
         let actual = encoder
             .execute("\\x63\\x61\\x69\\x64\\x6f".as_bytes())
             .unwrap();
-        let expected = "cyware".as_bytes().to_vec();
+        let expected = "caido".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
@@ -114,14 +114,14 @@ mod tests {
     fn hex_decode_delimiter() {
         let encoder = HexDecode::new(None, Some(",".to_string()));
         let actual = encoder.execute("63,61,69,64,6f".as_bytes()).unwrap();
-        let expected = "cyware".as_bytes().to_vec();
+        let expected = "caido".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
     #[test]
     fn hex_encode_prefix_upper() {
         let encoder = HexEncode::new(HexFormat::Upper, Some("\\x".to_string()), None);
-        let actual = encoder.execute("cyware".as_bytes()).unwrap();
+        let actual = encoder.execute("caido".as_bytes()).unwrap();
         let expected = "\\x63\\x61\\x69\\x64\\x6F".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
@@ -129,7 +129,7 @@ mod tests {
     #[test]
     fn hex_encode_prefix_lower() {
         let encoder = HexEncode::new(HexFormat::Lower, Some("0x".to_string()), None);
-        let actual = encoder.execute("cyware".as_bytes()).unwrap();
+        let actual = encoder.execute("caido".as_bytes()).unwrap();
         let expected = "0x630x610x690x640x6f".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
@@ -137,7 +137,7 @@ mod tests {
     #[test]
     fn hex_encode_delimiter_lower() {
         let encoder = HexEncode::new(HexFormat::Lower, None, Some("\n".to_string()));
-        let actual = encoder.execute("cyware".as_bytes()).unwrap();
+        let actual = encoder.execute("caido".as_bytes()).unwrap();
         let expected = "63\n61\n69\n64\n6f".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
@@ -145,7 +145,7 @@ mod tests {
     #[test]
     fn hex_encode_delimiter_upper() {
         let encoder = HexEncode::new(HexFormat::Upper, None, Some("\n".to_string()));
-        let actual = encoder.execute("cyware".as_bytes()).unwrap();
+        let actual = encoder.execute("caido".as_bytes()).unwrap();
         let expected = "63\n61\n69\n64\n6F".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }

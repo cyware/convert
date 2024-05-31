@@ -47,14 +47,14 @@ mod tests {
     fn base64_decode() {
         let encoder = Base32HexDecode::new();
         let actual = encoder.execute("CDGMIP3F".as_bytes()).unwrap();
-        let expected = "cyware".as_bytes().to_vec();
+        let expected = "caido".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }
 
     #[test]
     fn base64_encode() {
         let encoder = Base32HexEncode::new();
-        let actual = encoder.execute("cyware".as_bytes()).unwrap();
+        let actual = encoder.execute("caido".as_bytes()).unwrap();
         let expected = "CDGMIP3F".as_bytes().to_vec();
         assert_eq!(actual, expected);
     }

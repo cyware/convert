@@ -1,7 +1,7 @@
 [package]
 name = "cyware-convert"
 version = "1.0.6"
-authors = ["KhulnaSoft DevSec <security@khulnasoft.com>", "Cyware <info@khulnasoft.com>"]
+authors = ["Christopher Guay <chris@cyware.io>", "Cyware <info@cyware.io>"]
 repository = "https://github.com/cyware/convert"
 readme = "README.md"
 edition = "2021"
