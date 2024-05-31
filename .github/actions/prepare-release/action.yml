@@ -1,0 +1,10 @@
+name: 'Prepare Bump'
+description: 'Prepare for version bump'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Intall Cargo Bump
+      shell: bash
+      run: |
+        cargo install --git https://github.com/cyware/action-cargo-bump

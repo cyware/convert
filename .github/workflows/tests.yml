@@ -1,0 +1,72 @@
+name: Tests
+
+on:
+  pull_request:
+    types:
+      - review_requested
+  push:
+    branches:
+      - 'main'
+
+concurrency:
+  group: validate-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: "Validate"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+
+      - name: "Setup dependencies and cache"
+        uses: ./.github/actions/setup
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install rust toolchain 
+        run: rustup show
+
+      - name: Build wasm package for tests
+        run: just build-wasm-dev
+
+      - name: Install web-tests dependencies
+        run: yarn install
+
+      - name: Run clippy
+        run: just clippy
+
+      - name: Run rust tests
+        run: cargo test -p cyware-convert 
+
+      - name: Run web-tests 
+        run : just wasm-tests
+
+  coverage:
+    name: "Generate coverage"
+    runs-on: ubuntu-latest
+    env:
+      CARGO_TERM_COLOR: always
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Setup dependencies and cache"
+        uses: ./.github/actions/setup
+
+      - name: Install rust toolchain 
+        run: rustup show
+
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
+
+      - name: Generate code coverage
+        run: just lcov 
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: lcov.info
+          fail_ci_if_error: true
